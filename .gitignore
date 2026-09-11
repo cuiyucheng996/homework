@@ -1,0 +1,6 @@
+.env
+.vscode
+checkpoint
+data
+pretrained
+logs
