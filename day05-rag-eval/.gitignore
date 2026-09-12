@@ -1,0 +1,6 @@
+bge-base-zh-v1.5
+bge-reranker-base
+.vscode
+.env
+__pycache__
+.chroma_db

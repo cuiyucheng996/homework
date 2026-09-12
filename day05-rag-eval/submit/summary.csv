@@ -1,0 +1,6 @@
+﻿strategy,nv_context_relevance,answer_relevancy,faithfulness,nv_response_groundedness
+Baseline 基线检索,0.95,1.0,1.0,1.0
+Multi Query 多重查询,0.9400000000000001,1.0,1.0,1.0
+HyDE 假设文档,0.93,1.0,1.0,1.0
+RRF 倒数排序融合,0.95,1.0,1.0,1.0
+Rerank Model 重排序模型,0.9400000000000001,1.0,1.0,1.0

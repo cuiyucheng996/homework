@@ -26,3 +26,11 @@ python run_ingest.py
 ```
 
 本次本地入库结果：User 节点 50 个，View 关系 102 条。
+
+---
+
+# Day05 RAG 评估
+
+见目录 `day05-rag-eval/`，说明与分析：`day05-rag-eval/REPORT.md`。
+
+五种评估截图：`day05-rag-eval/submit/{baseline,multi_query,hyde,rrf,rerank}.png`。
