@@ -29,6 +29,12 @@ python run_ingest.py
 
 ---
 
+# Day03 LCEL 多轮 RAG
+
+见 `day03-rag/`（仅 `.py`，无 ipynb）。运行 `run_multiturn.py` 后截取终端三轮问答。
+
+---
+
 # Day05 RAG 评估
 
 见目录 `day05-rag-eval/`，说明与分析：`day05-rag-eval/REPORT.md`。
