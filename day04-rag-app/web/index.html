@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>自研 RAG 问答</title>
+  <style>
+    body { font-family: "Segoe UI", sans-serif; max-width: 820px; margin: 24px auto; color: #1b2430; background: #f4f1ea; }
+    h1 { font-size: 22px; }
+    .hint { color: #5c6670; font-size: 14px; }
+    textarea { width: 100%; min-height: 72px; padding: 10px; font-size: 15px; }
+    button { margin-top: 8px; padding: 8px 16px; background: #2d6a4f; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+    #answer { white-space: pre-wrap; background: #fff; padding: 16px; border-radius: 8px; margin-top: 16px; }
+    .cite { font-size: 13px; background: #e9ece6; padding: 8px; margin-top: 8px; border-left: 3px solid #2d6a4f; }
+  </style>
+</head>
+<body>
+  <h1>自研 RAG（标题切块 + 引用）</h1>
+  <p class="hint">知识库：命令行的艺术 + 国家天文台 2023 部门预算。非课堂 naive_index 拷贝。</p>
+  <textarea id="q" placeholder="例如：中国科学院2023年部门总预算是多少"></textarea>
+  <button onclick="go()">提问</button>
+  <div id="answer"></div>
+  <script>
+    async function go() {
+      const q = document.getElementById("q").value.trim();
+      if (!q) return;
+      document.getElementById("answer").textContent = "检索中…";
+      const res = await fetch("/ask?q=" + encodeURIComponent(q));
+      const data = await res.json();
+      let html = data.answer.replace(/</g, "&lt;");
+      (data.citations || []).forEach((c) => {
+        html += `<div class="cite"><b>${c.title}</b>（${c.source}）<br>${c.preview.replace(/</g, "&lt;")}</div>`;
+      });
+      document.getElementById("answer").innerHTML = html;
+    }
+  </script>
+</body>
+</html>

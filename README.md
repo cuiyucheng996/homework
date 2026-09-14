@@ -45,9 +45,10 @@ python run_ingest.py
 
 # Day06 GraphRAG + LocalRAG
 
-见 `day06-hybrid-rag/`。按问题分流：
+见 `day06-hybrid-rag/`。
 
-- 「中国科学院2023年部门总预算是多少」→ LocalRAG
-- 「推荐一个款苹果品牌的手机」→ GraphRAG
+---
 
-运行：`python test_route.py`，再 `python graphrag_service.py`，打开 http://127.0.0.1:8007。截图放到 `day06-hybrid-rag/submit/`。
+# Day04 自研 RAG 应用
+
+见 `day04-rag-app/`（**未直接提交课堂代码**）。运行 `python server.py` 后打开 http://127.0.0.1:8010。
