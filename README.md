@@ -40,3 +40,14 @@ python run_ingest.py
 见目录 `day05-rag-eval/`，说明与分析：`day05-rag-eval/REPORT.md`。
 
 五种评估截图：`day05-rag-eval/submit/{baseline,multi_query,hyde,rrf,rerank}.png`。
+
+---
+
+# Day06 GraphRAG + LocalRAG
+
+见 `day06-hybrid-rag/`。按问题分流：
+
+- 「中国科学院2023年部门总预算是多少」→ LocalRAG
+- 「推荐一个款苹果品牌的手机」→ GraphRAG
+
+运行：`python test_route.py`，再 `python graphrag_service.py`，打开 http://127.0.0.1:8007。截图放到 `day06-hybrid-rag/submit/`。
