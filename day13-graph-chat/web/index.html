@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>电商智能客服</title>
+  <style>
+    body { font-family: "Microsoft YaHei", sans-serif; background: #f8f7f6; margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+    #dialog-area { flex: 1; width: 100%; max-width: 900px; padding: 16px; display: flex; flex-direction: column; }
+    .bubble { margin-bottom: 12px; padding: 12px; border-radius: 16px; max-width: 80%; white-space: pre-wrap; line-height: 1.5; }
+    .user { align-self: flex-end; background: #3b82f6; color: #fff; }
+    .bot { align-self: flex-start; background: #fff; }
+    .input-box { width: 100%; max-width: 900px; padding: 16px; display: flex; gap: 8px; }
+    textarea { flex: 1; min-height: 44px; padding: 8px; border-radius: 8px; border: 1px solid #ddd; }
+    button { background: #3b82f6; color: #fff; border: none; border-radius: 8px; padding: 8px 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div id="dialog-area">
+    <div class="bubble bot">您好！我是电商智能客服。本作业实现「查询某商品的所有单品」，可试：小米12S Ultra 都有哪些版本</div>
+  </div>
+  <div class="input-box">
+    <textarea id="user-input" placeholder="需要我做什么？"></textarea>
+    <button type="button" id="send-btn">发送</button>
+  </div>
+  <script>
+    const area = document.getElementById("dialog-area");
+    const input = document.getElementById("user-input");
+    const btn = document.getElementById("send-btn");
+    function add(text, user) {
+      const el = document.createElement("div");
+      el.className = "bubble " + (user ? "user" : "bot");
+      el.textContent = text;
+      area.appendChild(el);
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+    async function send() {
+      const message = input.value.trim();
+      if (!message) return;
+      btn.disabled = true;
+      add(message, true);
+      input.value = "";
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message }),
+        });
+        const data = await res.json();
+        add(data.message || "无回复", false);
+      } catch (e) {
+        add("系统暂时无法响应", false);
+      }
+      btn.disabled = false;
+    }
+    btn.onclick = send;
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
+    });
+  </script>
+</body>
+</html>

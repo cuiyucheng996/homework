@@ -52,3 +52,9 @@ python run_ingest.py
 # Day04 自研 RAG 应用
 
 见 `day04-rag-app/`（**未直接提交课堂代码**）。运行 `python server.py` 后打开 http://127.0.0.1:8010。
+
+---
+
+# Day13 查询某商品的所有单品
+
+见 `day13-graph-chat/`。仓库地址同上。选题报告：`day13-graph-chat/TOPIC.md`。
